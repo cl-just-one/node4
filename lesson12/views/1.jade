@@ -1,0 +1,48 @@
+DOCTYPE
+html
+  header
+    meta(chartset='UTF-8')
+    title 'jade测试'
+    script
+      |window.onload=function (){
+      | var oBtn=document.getElementById('btn1');
+      | oBtn.onclick=function (){
+      |   alert('aaaa');
+      | };
+      |};
+    script.
+      window.onload=function (){
+        var oBtn=document.getElementById('btn1');
+        oBtn.onclick=function (){
+          alert('aaaa');
+        };
+      };
+    script
+      include a.js
+  body
+    |input
+    |div
+    div #{a}
+    div=a
+    div 我的名字：#{a+b}
+    div(style=json)
+    div(class=arr)
+    -var a = 90
+    -var b = 89
+    div 结果是： #{a+b}
+    -for(var i=0;i<arr.length;i++)
+      div arr[i]
+    div!=content
+    -var a = 97
+    if(a%2==0)
+      div(style={color:'red'}) 偶数
+    else
+      div(style={color:'red'}) ji数
+    -var a=15
+      case a
+        when 0
+          div 444
+        when 1
+          div 888
+        default
+          |bbb

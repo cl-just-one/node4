@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <script src="./ajax.js"></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        var oTextUser = document.getElementById('user');
+        var oTextPass = document.getElementById('password');
+
+        var oBtnReg = document.getElementById('reg');
+        var oBtnLogin = document.getElementById('login');
+
+        oBtnReg.onclick = function () {
+          ajax({
+            type: "get",
+            url: "/user",
+            data: {
+              act: 'reg',
+              username: oTextUser.value,
+              password: oTextPass.value
+            },
+            success: function (res) {
+              console.log("res="+res);
+              var json = eval('('+res+')');
+              if (json.ok) {
+                alert('注册成功');
+              } else {
+                alert('注册失败：'+json.msg);
+              }
+            },
+            error: function (err) {
+              alert('通信错误');
+            }
+          })
+        };
+
+        oBtnLogin.onclick = function () {
+          ajax({
+            type: "get",
+            url: "/user",
+            data: {
+              act: 'login',
+              username: oTextUser.value,
+              password: oTextPass.value
+            },
+            success: function (res) {
+              var json = eval('('+res+')');
+              if (json.ok) {
+                alert('登录成功');
+              } else {
+                alert('登录失败：'+json.msg);
+              }
+            },
+            error: function (err) {
+              alert('通信错误');
+            }
+          })
+        };
+
+      };
+    </script>
+  </head>
+  <body>
+    用户名：<input id="user" type="text" name="username"><br>
+    密码：<input id="password" type="password" name="password"><br>
+    <button id="reg" type="button">注册</button>
+    <button id="login" type="button">提交</button>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Express</title>
+    <script src="./ajax.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    用户：<input id="user" type="text" name="user"/><br>
+    密码：<input id="pass" type="password" name="password"/><br>
+    <input id="btn" type="submit" name="提交"/>
+    <script type="text/javascript">
+      var oUser = document.getElementById('user')
+      var oPass = document.getElementById('pass')
+      var oBtn = document.getElementById('btn')
+
+      oBtn.onclick = function () {
+        ajax({
+          type: "post",
+          url: "/login",
+          data: {
+            user: oUser.value,
+            pass: oPass.value
+          },
+          success: function (str) {
+            var json = eval('('+str+')');
+            if (json.ok) {
+              alert('登陆成功')
+            } else {
+              alert('登陆失败：'+json.msg)
+            }
+          },
+          error: function () {
+            alert('通信失败')
+          }
+        })
+      };
+    </script>
+  </body>
+</html>

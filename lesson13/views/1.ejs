@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <%= name %>
+    <% for(var a = 0; a<arr.length; a++){ %>
+      <div><%= arr[a] %></div>
+      <% include ./a.txt %>
+    <% }%>
+    <%
+      var str='<div></div>'
+    %>
+    <%- str%>
+  </body>
+</html>
