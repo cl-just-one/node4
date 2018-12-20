@@ -1,0 +1,53 @@
+1、http模块
+	创建服务：var server = http.createServer(function (req, res) {
+		// 处理内容
+	})；
+	监听端口：server.listen(8080);
+2、fs模块
+	读文件：fs.readFile('xx.xx', function (err, data) {	// xx.xx: 读取的文件 / data: 读取内容
+			// 处理
+		});
+	写文件：fs.writeFile('xx.xx', 'xx', function (err) {	// xx.xx: 写入文件名称 / xx: 写入文件内容
+			// 处理
+		});
+3、querystring模块·
+	querystring.parse(url)：解析url，生成易于分析的json格式。'www.abc.com?a=1&b=2' => { a: 1, b: 2};
+	querystring.stringify(obj)：与parse相反，拼接查询。
+4、url模块
+	url.parse(url, true).query: 解析url, 生产json。false，生产字符串。
+5、导出模块: module.exprts = {}。
+6、express-static模块
+	server.use(expressStatic('/'));
+	读取静态模块。
+7、设置cookie: res.cookie('name', 'value', {path: '/', maxAge: 1000});
+8、cookie-parser模块
+	server.use(cookieParser()) => res.cookies。
+	签名: server.use(cookieParser('eropjmkjkkxkxkxkkxkxkxk')) => res.signedCookies.name。
+	清除cookie: res.clearCookie('xxxxx')。
+9、cookie-session模块
+	server.use(cookieSession({
+		  name: 'aa',
+		  keys: [11, '22km', 6444],
+		  maxAge: 24*3600*1000
+	}))；
+10、ejs模块
+	ejs.renderFile('路径', '内容', function (err, data) {});
+11、jade模块
+	jade.renderFile('路径', { pretty: true });
+12、body-parser模块
+	server.use(bodyParser.urlencoded({
+		extended: false
+	}));
+13、multer模块
+	server.use(multer({
+		dest: './www/upload'
+	}).any());
+14、mysql模块
+	var db = mysql.createConnection({
+		  host: 'localhost',
+		  port: '3306',
+		  user: 'root',
+		  password: 'root',
+		  database: 'blog'
+	});
+	db.query('sql语句', (err, data)=>{});
